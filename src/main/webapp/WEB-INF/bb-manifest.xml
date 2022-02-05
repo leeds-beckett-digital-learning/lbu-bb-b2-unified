@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://www.blackboard.com/bb-manifest-plugin"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://www.blackboard.com/bb-manifest-plugin https://maven.blackboard.com/content/repositories/releases/blackboard/platform/bb-manifest-plugin/3900.17.0/bb-manifest-plugin-3900.17.0.xsd">
+  <plugin>
+
+    <!--
+    
+    It seems that some radical changes to the manifest aren't reflected
+    in the admin user interface unless the building block is uninstalled and
+    reinstalled. For example, when applications and modules are
+    added to the b2.
+    
+    -->
+    <name value="b2.name" />
+    <handle value="bbb2unified" />
+    <description value="b2.description" />
+    <default-locale value="en_US" />
+
+    <version value="1.1.9" />
+    <requires>
+      <bbversion value="3900.13.0" />
+    </requires>
+
+    <vendor>
+      <id value="LBU" />
+      <name value="Leeds Beckett University" />
+      <url value="http://www.leedsbeckett.ac.uk" />
+      <description value="Leeds Beckett University" />
+    </vendor>
+
+    <application-defs>
+      <application handle="unifiedapp" type="shared" use-ssl="false"  name="unifiedapp.name" can-allow-guest="false">
+        <description lang="en_US">Links for the LBU unified building block.</description>
+        <links>
+          <link>
+            <type value="system_tool"/>
+            <name value="unifiedappconfig.name"/>
+            <url value="admin.jsp" />
+            <description value="unifiedappconfig.description" />
+          </link>
+        </links>
+      </application>
+    </application-defs>
+
+
+    <module-defs>
+      <module-type ext-ref="coursecontactstype" title="modtype1.name" uicreatable="true">
+        <jsp-dir>coursecontacts</jsp-dir>
+        <jsp><view>view.jsp</view></jsp>
+      </module-type>
+      
+      <module-type ext-ref="subjectlisttype" title="modtype2.name" uicreatable="true">
+        <jsp-dir>subjectlinks</jsp-dir>
+        <jsp><view>view.jsp</view></jsp>
+      </module-type>            
+
+      <module-type ext-ref="courseheadertype" title="modtype3course.name" uicreatable="true">
+        <jsp-dir>courseheader</jsp-dir>
+        <jsp><view>view.jsp</view></jsp>
+      </module-type>  
+
+      <module-type ext-ref="staffheadertype" title="modtype3staff.name" uicreatable="true">
+        <jsp-dir>staffheader</jsp-dir>
+        <jsp><view>view.jsp</view></jsp>
+      </module-type>
+      
+      <module-type ext-ref="trainingselfenroltype" title="modtype4.name" uicreatable="true">
+        <jsp-dir>trainingselfenrol</jsp-dir>
+        <jsp><view>view.jsp</view></jsp>
+      </module-type>  
+
+      <module-type ext-ref="sandboxtype" title="modtype5.name" uicreatable="true">
+        <jsp-dir>sandbox</jsp-dir>
+        <jsp><view>view.jsp</view></jsp>
+      </module-type>  
+
+      <module-type ext-ref="selfenroltype" title="modtype6.name" uicreatable="true">
+        <jsp-dir>selfenrol</jsp-dir>
+        <jsp><view>view.jsp</view></jsp>
+      </module-type> 
+       
+      <module-type ext-ref="spsstype" title="modtype7.name" uicreatable="true">
+        <jsp-dir>spss</jsp-dir>
+        <jsp><view>view.jsp</view></jsp>
+      </module-type>  
+      
+      <module type="coursecontactstype" ext-ref="coursecontacts" hidetitle="true" isadmin="false" useraddable="true" isdeletable="false" 
+              isdetachable="false" title="mod1.name">
+        <description>LBU Course Contacts</description>
+        <ExtraInfo></ExtraInfo>
+        <module-groups></module-groups>
+      </module>
+      
+      <module type="subjectlisttype" ext-ref="subjectlist" hidetitle="true" isadmin="false" useraddable="true" isdeletable="false" 
+              isdetachable="false" title="mod2.name">
+        <description>LBU Subject Support List</description>
+        <ExtraInfo></ExtraInfo>
+        <module-groups></module-groups>
+      </module>
+      
+      <module type="courseheadertype" ext-ref="courseheader" hidetitle="true" isadmin="false" useraddable="true" isdeletable="false" 
+              isdetachable="false" title="mod3course.name">
+        <description>LBU Course Tab Header</description>
+        <ExtraInfo></ExtraInfo>
+        <module-groups></module-groups>
+      </module>
+      
+      <module type="staffheadertype" ext-ref="staffheader" hidetitle="true" isadmin="false" useraddable="true" isdeletable="false" 
+              isdetachable="false" title="mod3staff.name">
+        <description>LBU Staff Tab Header</description>
+        <ExtraInfo></ExtraInfo>
+        <module-groups></module-groups>
+      </module>
+      
+      <module type="trainingselfenroltype" ext-ref="trainingselfenrol" hidetitle="true" isadmin="false" useraddable="true" isdeletable="false" 
+              isdetachable="false" title="mod4.name">
+        <description>LBU Training Self Enrol</description>
+        <ExtraInfo></ExtraInfo>
+        <module-groups></module-groups>
+      </module>
+      
+      <module type="sandboxtype" ext-ref="sandbox" hidetitle="true" isadmin="false" useraddable="true" isdeletable="false" 
+              isdetachable="false" title="mod5.name">
+        <description>LBU Training Sandbox Request</description>
+        <ExtraInfo></ExtraInfo>
+        <module-groups></module-groups>
+      </module>
+      
+      <module type="selfenroltype" ext-ref="courseselfenrol" hidetitle="true" isadmin="false" useraddable="true" isdeletable="false" 
+              isdetachable="false" title="mod6course.name">
+        <description>LBU Module Self Enrol</description>
+        <ExtraInfo><property key="mode" type="course"/></ExtraInfo>
+        <module-groups></module-groups>
+      </module>
+      
+      <module type="selfenroltype" ext-ref="organizationselfenrol" hidetitle="true" isadmin="false" useraddable="true" isdeletable="false" 
+              isdetachable="false" title="mod6org.name">
+        <description>LBU Course Group Self Enrol</description>
+        <ExtraInfo><property key="mode" type="organization"/></ExtraInfo>
+        <module-groups></module-groups>
+      </module>
+
+      <module type="spsstype" ext-ref="spss" hidetitle="true" isadmin="false" useraddable="true" isdeletable="false" 
+              isdetachable="false" title="mod7.name">
+        <description>LBU SPSS Request</description>
+        <ExtraInfo></ExtraInfo>
+        <module-groups></module-groups>
+      </module>
+      
+    </module-defs>
+      
+    <permissions>
+      <permission type="attribute" name="user.authinfo" actions="get"/>
+      <permission type="attribute" name="user.personalinfo" actions="get,set"/>
+      <permission type="persist" name="content" actions="persist" />
+      <permission type="blackboard.persist.PersistPermission" name="coursetoc"        actions="create,modify,delete" />      
+      <permission type="blackboard.persist.PersistPermission" name="coursemembership" actions="create,modify,delete" />
+      <permission type="blackboard.persist.PersistPermission" name="course"           actions="create" />
+      <permission type="java.io.FilePermission" name="/usr/local/blackboard/logs/plugins/-" actions="read,write,delete"/>
+      <!-- This is required to connect to the activemq message broker and would
+      also be needed to send email to an SMTP server. -->
+      <permission type="socket" name="*" actions="connect,resolve"/>
+      <!-- ActiveMQ wants this when closing all connections. -->
+      <permission type="java.lang.RuntimePermission" name="modifyThread"/>
+      <!-- to send email, need to set mail handling factory -->
+      <permission type="java.lang.RuntimePermission" name="setFactory"/>    
+      <!-- For Jackson serialization -->
+      <permission type="java.lang.reflect.ReflectPermission" name="suppressAccessChecks"/>
+    </permissions>
+
+  </plugin>
+</manifest>

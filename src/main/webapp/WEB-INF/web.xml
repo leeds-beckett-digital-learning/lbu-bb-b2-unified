@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app  xmlns="http://java.sun.com/xml/ns/javaee"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+          version="3.0" metadata-complete="true">
+
+  <display-name>LBU BB B2 Example</display-name>
+
+    <absolute-ordering/>
+
+    <listener>
+      <listener-class>uk.ac.leedsbeckett.digles.b2unified.WebAppCore</listener-class>
+    </listener>
+    
+    <servlet>
+        <servlet-name>enrolontrainingservlet</servlet-name>
+        <servlet-class>uk.ac.leedsbeckett.digles.b2unified.EnrolOnTrainingServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>createsandboxservlet</servlet-name>
+        <servlet-class>uk.ac.leedsbeckett.digles.b2unified.CreateSandboxServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>selfenrolsearchservlet</servlet-name>
+        <servlet-class>uk.ac.leedsbeckett.digles.b2unified.SelfEnrolSearchServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>selfenrolenrolservlet</servlet-name>
+        <servlet-class>uk.ac.leedsbeckett.digles.b2unified.SelfEnrolEnrolServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>spssservlet</servlet-name>
+        <servlet-class>uk.ac.leedsbeckett.digles.b2unified.SpssServlet</servlet-class>
+    </servlet>
+
+
+    <!-- JSPC servlet mappings start -->
+
+    <servlet>
+        <servlet-name>org.apache.jsp.admin_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.admin_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.config_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.config_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.error_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.error_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.trainingselfenrol.view_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.trainingselfenrol.view_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.subjectlinks.view_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.subjectlinks.view_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.staffheader.view_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.staffheader.view_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.spss.view_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.spss.view_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.selfenrol.view_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.selfenrol.view_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.sandbox.view_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.sandbox.view_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.courseheader.view_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.courseheader.view_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.coursecontacts.view_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.coursecontacts.view_jsp</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.admin_jsp</servlet-name>
+        <url-pattern>/admin.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.config_jsp</servlet-name>
+        <url-pattern>/config.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.error_jsp</servlet-name>
+        <url-pattern>/error.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.trainingselfenrol.view_jsp</servlet-name>
+        <url-pattern>/trainingselfenrol/view.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.subjectlinks.view_jsp</servlet-name>
+        <url-pattern>/subjectlinks/view.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.staffheader.view_jsp</servlet-name>
+        <url-pattern>/staffheader/view.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.spss.view_jsp</servlet-name>
+        <url-pattern>/spss/view.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.selfenrol.view_jsp</servlet-name>
+        <url-pattern>/selfenrol/view.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.sandbox.view_jsp</servlet-name>
+        <url-pattern>/sandbox/view.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.courseheader.view_jsp</servlet-name>
+        <url-pattern>/courseheader/view.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.coursecontacts.view_jsp</servlet-name>
+        <url-pattern>/coursecontacts/view.jsp</url-pattern>
+    </servlet-mapping>
+
+<!-- JSPC servlet mappings end -->
+
+<servlet-mapping>
+    <servlet-name>enrolontrainingservlet</servlet-name>
+    <url-pattern>/servlets/enrolontraining/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>createsandboxservlet</servlet-name>
+    <url-pattern>/servlets/createsandbox/*</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>selfenrolsearchservlet</servlet-name>
+    <url-pattern>/servlets/selfenrolsearch/*</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>selfenrolenrolservlet</servlet-name>
+    <url-pattern>/servlets/selfenrolenrol/*</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>spssservlet</servlet-name>
+    <url-pattern>/servlets/spss/*</url-pattern>
+  </servlet-mapping>
+  
+</web-app>
