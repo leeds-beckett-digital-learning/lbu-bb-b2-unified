@@ -21,6 +21,7 @@ import blackboard.persist.user.UserDbLoader;
 import blackboard.platform.context.Context;
 import blackboard.platform.context.ContextManagerFactory;
 import blackboard.platform.session.BbSession;
+import java.util.Random;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
@@ -30,6 +31,11 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class BaseOutcomes
 {
+  static final Object o = new Object();
+  static final Random random = new Random( System.currentTimeMillis() );
+  static String styletemplate=null;
+  
+  final String id;
   String errormessage = null;
   WebAppCore webappcore;
   UnifiedBuildingBlockProperties settings;
@@ -40,9 +46,13 @@ public class BaseOutcomes
   User user;
   boolean student=false;
   boolean staff=false;
-
+  String stylecontent=null;
+  
+  
+  
   public BaseOutcomes()
   {
+    id = Long.toHexString( random.nextLong() );
     try
     {
       bbcontext      = ContextManagerFactory.getInstance().getContext();
@@ -59,6 +69,7 @@ public class BaseOutcomes
         student = roleid.equals(  webappcore.configproperties.getStudentRoleId() );
         staff   = roleid.equals(  webappcore.configproperties.getStaffRoleId()   );
       }    
+      setStyleContent();    
     }
     catch ( Exception ex )
     {
@@ -66,7 +77,32 @@ public class BaseOutcomes
       if ( webappcore != null )
           webappcore.logger.error( errormessage, ex );
     }
-    
+  }
+
+  private void setStyleContent()
+  {
+    synchronized ( o )
+    {
+      if ( styletemplate == null )
+      {
+        try
+        {
+          webappcore.logger.debug( BaseOutcomes.class.getClassLoader().getResource( "/css/dynamic.css" ) );
+          styletemplate = new String( BaseOutcomes.class.getClassLoader().getResourceAsStream( "/css/dynamic.css" ).readAllBytes(), "UTF-8" );
+          webappcore.logger.debug( styletemplate );
+        }
+        catch ( Exception e )
+        {
+          webappcore.logger.error(  "Unable to load CSS.", e );
+          styletemplate = "/* error loading */";
+        }
+      }
+    }    
+  }  
+
+  public String getId()
+  {
+    return id;
   }
   
   public String getName()
@@ -136,5 +172,47 @@ public class BaseOutcomes
   {
     return user.getPortalRoleId().getExternalString();
   }
+
+  public String getStyleColour()
+  {
+    return "pink";
+  }
   
+  public String getStyleContent()
+  {
+    
+    synchronized( this )
+    {
+      if ( stylecontent == null )
+      {
+        webappcore.logger.debug( "Selected variant = " + this.getStyleColour() );
+        String fcolor1 = "#ffffff";
+        String bcolor1 = "#000000";
+        String fcolor2 = "#000000";
+        String bcolor2 = "#ffffff";
+        String bcolor3 = "#777777";
+        if ( "pink".equals( this.getStyleColour() ) )
+        {
+          fcolor1 = "#ffffff";
+          bcolor1 = "#690039";
+          fcolor2 = "#690039";
+          bcolor2 = "#f9cbdf";
+          bcolor3 = "#e382b5";
+        }
+
+        String s = styletemplate;
+        s = s.replace( "__id__",      getId() );
+        s = s.replace( "__bcolor1__", bcolor1 );
+        s = s.replace( "__fcolor1__", fcolor1 );
+        s = s.replace( "__bcolor2__", bcolor2 );
+        s = s.replace( "__fcolor2__", fcolor2 );
+        s = s.replace( "__bcolor3__", bcolor3 );
+
+        stylecontent = s;
+        webappcore.logger.debug( stylecontent );
+      }
+    }
+    
+    return stylecontent;
+  }  
 }

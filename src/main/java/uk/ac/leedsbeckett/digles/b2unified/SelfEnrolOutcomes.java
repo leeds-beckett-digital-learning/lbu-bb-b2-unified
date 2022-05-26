@@ -88,6 +88,7 @@ public class SelfEnrolOutcomes extends BaseOutcomes
     return PlugInUtil.getUri("LBU", "bbb2unified", "servlets/selfenrolenrol/organization/");
   }
   
+  @Override
   public String getStyleColour()
   {
     if ( coursemode )
@@ -120,5 +121,5 @@ public class SelfEnrolOutcomes extends BaseOutcomes
     if ( coursemode )
       return webappcore.configproperties.getCourseSelfEnrolHelpHtml().getFormattedText();
     return webappcore.configproperties.getOrganizationSelfEnrolHelpHtml().getFormattedText();
-  }  
+  } 
 }

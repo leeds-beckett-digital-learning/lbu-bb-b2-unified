@@ -1,0 +1,101 @@
+.__id___capability
+{
+  width: 40px;
+  padding: 0;
+  float: left;
+  height: 170px;
+  padding: 20px;
+  margin-bottom: -12px;
+  margin-left: -1px;
+  border-right: solid;
+  background-color: __bcolor3__;
+  border-right-color: __bcolor1__;
+  border-right-width: 3px;
+}
+
+.__id___info_button
+{
+  margin-top: 15px;
+  border-radius: 5px;
+  background-color: __bcolor1__;
+}
+
+.__id___help_button
+{
+  border-radius: 5px;
+  background-color: __bcolor1__;
+}
+
+.__id___info_button_text
+{
+  display: inline-block;
+  font-family: "Times New Roman",Times,serif;
+  font-style: italic;
+  line-height: 37px;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  font-size: 38px;
+  padding-left: 13px;
+  color: white;
+}
+
+.__id___help_button_text
+{
+  display: inline-block;
+  font-family: 'AvenyTRegular';
+  line-height: 42px;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  font-size: 32px;
+  padding-left: 12px;
+  color: white;
+}
+
+.__id___service_info
+{
+  height: 190px;
+  padding-left: 100px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  background-color: __bcolor2__;
+}
+
+.__id___service_name
+{
+  font-size: 1.5em;
+  font-weight: 600;
+  color: __fcolor2__
+}
+
+.__id___service_text
+{
+  font-size: 14px;
+  color: black;
+}
+
+.__id___back_button {
+  cursor: pointer;
+  text-decoration: none;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 5px;
+  padding: 2px 4px 2px 4px;
+  background-color: __bcolor1__;
+}
+
+.__id___action_button
+{
+  position: absolute; 
+  cursor: pointer; 
+  text-decoration: none; 
+  padding: 12px 22px 14px 22px;
+  font-size: 20px; 
+  border-radius: 5px; 
+  width: 150px; 
+  color: #fff; 
+  margin-top: 5%;
+  background-color: __bcolor1__;
+}
