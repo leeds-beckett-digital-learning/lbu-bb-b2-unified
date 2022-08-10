@@ -1,0 +1,130 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 31 May 2022, 10:28:39
+    Author     : jon
+*/
+
+.lbu_unified_bb_dialogbox
+{
+  position: absolute; 
+  box-shadow: 0px 0px 10px #b7b3b3; 
+  border-radius: 5px; 
+  max-width: 80em; 
+  border-width: 5px; 
+  border-style: solid; 
+  border-color: rgb(171, 74, 156); 
+  background-color: rgb(255, 255, 255); 
+  padding: 5px;z-index: 101;
+}
+
+.lbu_unified_bb_dialogcontent
+{
+  margin-top: 10px; 
+  font-family: AvenyTRegular; 
+  font-size: 20px; 
+  color:#59194e; 
+  font-weight:bold; 
+  padding-top:5px; 
+  padding-bottom:10px; 
+  padding-left:10px;
+}
+
+.lbu_unified_bb_buttonpanel
+{
+  width: 40px;
+  padding: 0;
+  float: left;
+  height: 170px;
+  padding: 20px;
+  margin-bottom: -12px;
+  margin-left: -1px;
+  border-right: solid;
+  border-right-width: 3px;
+}
+
+.lbu_unified_bb_info_button
+{
+  margin-top: 15px;
+  border-radius: 5px;
+}
+
+.lbu_unified_bb_help_button
+{
+  border-radius: 5px;
+}
+
+.lbu_unified_bb_info_button_text
+{
+  display: inline-block;
+  font-family: "Times New Roman",Times,serif;
+  font-style: italic;
+  line-height: 37px;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  font-size: 38px;
+  padding-left: 13px;
+}
+
+.lbu_unified_bb_help_button_text
+{
+  display: inline-block;
+  font-family: 'AvenyTRegular';
+  line-height: 42px;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  font-size: 32px;
+  padding-left: 12px;
+}
+
+.lbu_unified_bb_centralpanel
+{
+  height: 190px;
+  padding-left: 100px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+}
+
+.lbu_unified_bb_centraltitle
+{
+  font-size: 1.5em;
+  font-weight: 600;
+}
+
+.lbu_unified_bb_centraltext
+{
+  font-size: 14px;
+}
+
+.lbu_unified_bb_back_button {
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 14px;
+  border-radius: 5px;
+  padding: 2px 4px 2px 4px;
+}
+
+.lbu_unified_bb_action_button
+{
+  position: absolute; 
+  cursor: pointer; 
+  text-decoration: none; 
+  padding: 12px 22px 14px 22px;
+  font-size: 20px; 
+  border-radius: 5px; 
+  width: 150px; 
+  margin-top: 5%;
+}
+
+.lbu_unified_bb_action_button_arrow
+{
+  position: absolute;
+  right: 0.25em;
+  top: -0.25em;
+  font-size: 250%;
+}

@@ -153,7 +153,7 @@ public class WebAppCore implements ServletContextListener, BuildingBlockPeerMess
     applyProperties();
 
     bbcoord = new BuildingBlockCoordinator( buildingblockvid, buildingblockhandle, serverid, this, logger );
-    bbcoord.setPingRate( 0 );
+    bbcoord.setPingRate( 300 );
     // This is an asynchronous start.  It creates a thread to start the messaging
     // but returns right away. This is because there could be issues connecting to
     // the message broker over the network that could make starting the building block

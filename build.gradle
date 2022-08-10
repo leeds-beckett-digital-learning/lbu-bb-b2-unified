@@ -17,7 +17,7 @@ apply plugin: 'maven-publish'
 
 // define the version for the project when publishing to maven
 group "uk.ac.leedsbeckett"
-version "1.2.0"
+version "1.2.1"
 description = 'LBU-BB-B2-Unified'
 
 repositories {
@@ -78,7 +78,7 @@ dependencies {
   compileOnly( "blackboard.platform:bb-taglibs:3900.13.0" ) { transitive = false }
 
   implementation 'org.apache.commons:commons-text:1.9'
-  implementation 'uk.ac.leedsbeckett:bbb2utils:0.1.15'  
+  implementation 'uk.ac.leedsbeckett:bbb2utils:0.2.11'  
 }
 
 task compileJsps(type: JavaCompile) {

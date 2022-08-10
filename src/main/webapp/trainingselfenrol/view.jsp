@@ -1,9 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <%@ taglib uri="/bbNG" prefix="bbNG" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:useBean id="outcomes" class="uk.ac.leedsbeckett.digles.b2unified.TrainingSelfEnrolOutcomes" scope="request"/>
+<c:set var="id" scope="request" value="${outcomes.getId()}"/>  
+<c:set var="csshref" scope="request" value="${outcomes.getStyleSheetHref()}"/>  
 
+<html>
+  <head>
+    <title>HTML Fragment for Insertion</title>
+  </head>
+  <body>
+    
 <c:choose>
   <c:when test="${outcomes.hasFailed()}">
       <p>${outcomes.getErrorMessage()}</p>
@@ -16,107 +24,181 @@
      to debug.
 -->
 <script type="text/javascript">
-  function trainingselfenrol_submitform()
+  
+  function ${id}submitform()
   {
     var url = "${outcomes.endpointURL}";
-    var cid = document.forms.trainingselfenrol_request_form.elements[0].value;
+    var cid = document.forms.${id}requestform.elements[0].value;
     if ( 'none' === cid )
     {
       alert( "Select a course before you click on the enrol button." );
       return;
     }
     
-    $('trainingselfenrolWait').show();
-    $('trainingselfenrolError').hide();
-    $('trainingselfenrolSuccess').hide();
-    $('trainingselfenrolDetail').show();
+    $('${id}dialogboxwait').show();
+    $('${id}dialogboxerror').hide();
+    $('${id}dialogboxsuccess').hide();
+    $('${id}dialogbox').show();
     
     new Ajax.Request( url, 
       {
         method: 'post',
         parameters: 'courseid=' + cid,
-        onFailure: function( transport ) { $('trainingselfenrolWait').hide(); $('trainingselfenrolError').show(); },
+        onFailure: function( transport ) { $('${id}dialogboxwait').hide(); $('${id}dialogboxerror').show(); },
         onSuccess: function( transport )
         {
           var obj = JSON.parse( transport.responseText );
           if ( obj.error )
-            $('trainingselfenrolSuccess').innerHTML = obj.errormessage;
+            $('${id}dialogboxsuccess').innerHTML = obj.errormessage;
           else
-            $('trainingselfenrolSuccess').innerHTML = "Enrolment was completed and system administrators have been notified.";
-          $('trainingselfenrolWait').hide(); 
-          $('trainingselfenrolSuccess').show();
+            $('${id}dialogboxsuccess').innerHTML = "Enrolment was completed and system administrators have been notified.";
+          $('${id}dialogboxwait').hide(); 
+          $('${id}dialogboxsuccess').show();
         }
       }
             );
   }
+  
+  function ${id}hidehelpinfo()
+  {
+    $(${outcomes.toIdA("moreinfobutton")}).show();
+    $(${outcomes.toIdA("lessinfobutton")}).hide();
+    $(${outcomes.toIdA("morehelpbutton")}).show();
+    $(${outcomes.toIdA("lesshelpbutton")}).hide();
+
+    $(${outcomes.toIdA("infopanel")}).hide();
+    $(${outcomes.toIdA("helppanel")}).hide();
+    $(${outcomes.toIdA("mainpanel")}).show();
+  }
+  
+  function ${id}showhelp()
+  {
+    $(${outcomes.toIdA("moreinfobutton")}).show();
+    $(${outcomes.toIdA("lessinfobutton")}).hide();
+    $(${outcomes.toIdA("morehelpbutton")}).hide();
+    $(${outcomes.toIdA("lesshelpbutton")}).show();
+
+    $(${outcomes.toIdA("infopanel")}).hide();
+    $(${outcomes.toIdA("helppanel")}).show();
+    $(${outcomes.toIdA("mainpanel")}).hide();
+  }
+  
+  function ${id}showinfo()
+  {
+    $(${outcomes.toIdA("moreinfobutton")}).hide();
+    $(${outcomes.toIdA("lessinfobutton")}).show();
+    $(${outcomes.toIdA("morehelpbutton")}).show();
+    $(${outcomes.toIdA("lesshelpbutton")}).hide();
+
+    $(${outcomes.toIdA("infopanel")}).show();
+    $(${outcomes.toIdA("helppanel")}).hide();
+    $(${outcomes.toIdA("mainpanel")}).hide();
+  }
+
+  function ${id}addstyletohead()
+  {
+    var link = $('lbu_unified_bb_style');
+    if ( link === null )
+    {
+      link      = document.createElement( "link" );
+      link.id   = 'lbu_unified_bb_style';
+      link.rel  = 'stylesheet';
+      link.type = 'text/css';
+      link.href = ${csshref};
+      document.head.appendChild( link );
+    }
+    
+    var main = $(${outcomes.toIdA("main")});
+    if ( !main ) return;
+    var container = main.parentElement.parentElement;
+    container.style.padding = '0px 0px 0px 0px';
+  }
+  
+  ${id}addstyletohead();
+    
+  
 </script>
 
-<style>
-  #trainingSession { 
-    width: 255px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
 
-  #trainingSession option {
-    white-space: nowrap;
-    width: 100%
-  }
-</style>
-
-   <div id="trainingselfenrolDetail"
-     style="display:none; position: absolute; box-shadow: 0px 0px 10px #b7b3b3; border-radius: 5px; width: 305px; border-width: 5px; border-style: solid; border-color: rgb(171, 74, 156); background-color: rgb(255, 255, 255); padding: 5px;z-index: 101;">
-    <a onclick="$('trainingselfenrolDetail').hide();"('trainingselfenrolDetail').hide() title="Back" class="bkt_back_button bkt_back_button_${outcomes.getStyleColour()}">&lt; Back</a>
-    <p id="trainingselfenrolWait" style="display:none; margin-top: 10px; font-family: AvenyTRegular; font-size: 20px; color:#59194e; font-weight:bold; padding-top:5px; padding-bottom:10px; padding-left:10px">
+   <div ${outcomes.toIdA("dialogbox")} class="lbu_unified_bb_dialogbox" style="display:none;">
+    <a onclick="$( ${outcomes.toId('dialogbox')} ).hide();" 
+       title="Back" 
+       class="bkt_back_button bkt_back_button_${outcomes.getStyleColour()}">&lt; Back</a>
+    <p ${outcomes.toIdA("dialogboxwait")} 
+        class="lbu_unified_bb_result"
+        style="display: none; background-color: ${outcomes.getStyleColour('bg',3)};">
         Please wait for enrolment to complete...</p>
-    <p id="trainingselfenrolError" style="display:none; margin-top: 10px; font-family: AvenyTRegular; font-size: 20px; color:#59194e; font-weight:bold; padding-top:5px; padding-bottom:10px; padding-left:10px">
+    <p ${outcomes.toIdA("dialogboxerror" )}
+        class="lbu_unified_bb_result"
+        style="display: none; background-color: ${outcomes.getStyleColour('bg',3)};">
         There was a technical problem trying to request enrolment from Blackboard Learn.</p>
-    <p id="trainingselfenrolSuccess" style="display:none; margin-top: 10px; font-family: AvenyTRegular; font-size: 20px; color:#59194e; font-weight:bold; padding-top:5px; padding-bottom:10px; padding-left:10px">
+    <p ${outcomes.toIdA("dialogboxsuccess")}
+        class="lbu_unified_bb_result"
+        style="display: none; background-color: ${outcomes.getStyleColour('bg',3)};">
         Enrolment was completed and system administrators have been notified. You will find the module listed on the modules tab now.</p>
    </div>
 
-<div class="bkt_channel_div">
-  <div class="bkt_capability bkt_capability_${outcomes.getStyleColour()}">
+<div ${outcomes.toIdA("main")}>
+  <div class="lbu_unified_bb_buttonpanel" style="background-color: ${outcomes.getStyleColour('bg',1)}; border-right-color: ${outcomes.getStyleColour('bor',0)};">
     <br/><!-- SPACE -->
     <!-- INFO BUTTON -->
-    <div class="bkt_info_button bkt_info_button_${outcomes.getStyleColour()}" id="more_info_trainingselfenrol" onclick="$('bkt_service_info_trainingselfenrol').hide(); $('bkt_further_help_trainingselfenrol').hide();$('bkt_further_info_trainingselfenrol').show();$('more_info_trainingselfenrol').hide();$('less_info_trainingselfenrol').show(); $('more_help_trainingselfenrol').show();$('less_help_trainingselfenrol').hide();" title="Information" style=""><span class="bkt_info_button_text">i</span></div>
+    <div class="lbu_unified_bb_info_button" 
+         style="background-color: ${outcomes.getStyleColour('bg',0)}; color: ${outcomes.getStyleColour('fg',0)}" 
+         ${outcomes.toIdA("moreinfobutton")} 
+         onclick="${id}showinfo()"><span class="lbu_unified_bb_info_button_text">i</span></div>
     <!-- LESS INFO BUTTON -->
-    <div class="bkt_info_button bkt_info_button_${outcomes.getStyleColour()}" id="less_info_trainingselfenrol" onclick="$('bkt_service_info_trainingselfenrol').show(); $('bkt_further_help_trainingselfenrol').hide(); $('bkt_further_info_trainingselfenrol').hide(); $('more_info_trainingselfenrol').show();$('less_info_trainingselfenrol').hide(); $('more_help_trainingselfenrol').show();$('less_help_trainingselfenrol').hide();" title="Close Information" style="display: none;"><span class="bkt_info_button_text">i</span></div>
+    <div class="lbu_unified_bb_info_button" 
+         style="background-color: ${outcomes.getStyleColour('bg',0)}; color: ${outcomes.getStyleColour('fg',0)}; display: none;" 
+         ${outcomes.toIdA("lessinfobutton")}  
+         onclick="${id}hidehelpinfo()"><span class="lbu_unified_bb_info_button_text">i</span></div>
     <br/><!-- SPACE -->
     <!-- HELP BUTTON -->
-    <div class="bkt_help_button bkt_help_button_${outcomes.getStyleColour()}" id="more_help_trainingselfenrol" onclick="$('bkt_service_info_trainingselfenrol').hide();$('bkt_further_help_trainingselfenrol').show();$('more_help_trainingselfenrol').hide();$('less_help_trainingselfenrol').show();$('bkt_further_info_trainingselfenrol').hide();$('more_info_trainingselfenrol').show();$('less_info_trainingselfenrol').hide();" title="Help" style=""><span class="bkt_help_button_text">?</span></div>
+    <div class="lbu_unified_bb_help_button" 
+         style="background-color: ${outcomes.getStyleColour('bg',0)}; color: ${outcomes.getStyleColour('fg',0)}" 
+         ${outcomes.toIdA("morehelpbutton")} 
+         onclick="${id}showhelp()"><span class="lbu_unified_bb_help_button_text">?</span></div>
     <!-- LESS HELP BUTTON -->
-    <div class="bkt_help_button bkt_help_button_${outcomes.getStyleColour()}" id="less_help_trainingselfenrol" onclick="$('bkt_service_info_trainingselfenrol').show(); $('bkt_further_help_trainingselfenrol').hide(); $('more_help_trainingselfenrol').show(); $('less_help_trainingselfenrol').hide(); $('bkt_further_info_trainingselfenrol').hide(); $('more_info_trainingselfenrol').show(); $('less_info_trainingselfenrol').hide();" title="Close Help" style="display: none;"><span class="bkt_help_button_text">?</span></div>
+    <div class="lbu_unified_bb_help_button" 
+         style="background-color: ${outcomes.getStyleColour('bg',0)}; color: ${outcomes.getStyleColour('fg',0)}; display: none;" 
+         ${outcomes.toIdA("lesshelpbutton")} 
+         onclick="${id}hidehelpinfo()"><span class="lbu_unified_bb_help_button_text">?</span></div>
   </div>
 
   <!-- The info section which shows when info is clicked -->
-  <div class="bkt_service_info bkt_service_info_${outcomes.getStyleColour()}" id="bkt_further_info_trainingselfenrol" style="display: none;">
-    <span class="bkt_service_name bkt_service_name_${outcomes.getStyleColour()} ">Information</span><br/><br/><!-- SPACES -->
-    <p class="bkt_service_text">${outcomes.infoText}</p><br/>
-    <a onclick="$('bkt_service_info_trainingselfenrol').show(); $('bkt_further_info_trainingselfenrol').hide(); $('more_info_trainingselfenrol').show();$('less_info_trainingselfenrol').hide();" title="Back" class="bkt_back_button bkt_back_button_${outcomes.getStyleColour()}">< Back</a>
+  <div class="lbu_unified_bb_centralpanel" ${outcomes.toIdA("infopanel")} 
+       style="display: none; background-color: ${outcomes.getStyleColour('bg',2)}">
+    <span class="lbu_unified_bb_centraltitle" style="color: ${outcomes.getStyleColour('fg',1)}">Information</span><br/><br/><!-- SPACES -->
+    <p class="lbu_unified_bb_centraltext">${outcomes.infoText}</p><br/>
+    <a onclick="${id}hidehelpinfo()" title="Back" 
+       class="lbu_unified_bb_back_button"
+       style="background-color: ${outcomes.getStyleColour('bg',0)}; color: ${outcomes.getStyleColour('fg',0)}">< Back</a>
   </div>
 
   <!-- The help section which shows when help is clicked -->
-  <div class="bkt_service_info bkt_service_info_${outcomes.getStyleColour()}" id="bkt_further_help_trainingselfenrol" style="display: none;">
-    <span class="bkt_service_name bkt_service_name_${outcomes.getStyleColour()}">Help</span><br/><br/><!-- SPACES -->
-    <p class="bkt_service_text ">${outcomes.helpText}</p><br/>
-    <a onclick="$('bkt_service_info_trainingselfenrol').show(); $('bkt_further_help_trainingselfenrol').hide(); $('more_help_trainingselfenrol').show();$('less_help_trainingselfenrol').hide();" title="Back" class="bkt_back_button bkt_back_button_${outcomes.getStyleColour()}">< Back</a>
+  <div class="lbu_unified_bb_centralpanel" ${outcomes.toIdA("helppanel")} 
+       style="display: none; background-color: ${outcomes.getStyleColour('bg',2)}">
+    <span class="lbu_unified_bb_centraltitle" style="color: ${outcomes.getStyleColour('fg',1)}">Help</span><br/><br/><!-- SPACES -->
+    <p class="lbu_unified_bb_centraltext ">${outcomes.helpText}</p><br/>
+.    <a onclick="${id}hidehelpinfo()" title="Back" 
+        class="lbu_unified_bb_back_button" 
+        style="background-color: ${outcomes.getStyleColour('bg',0)}; color: ${outcomes.getStyleColour('fg',0)}">< Back</a>
   </div>
 
+
   <!-- The main body of the channel -->
-  <div class="bkt_service_info bkt_service_info_${outcomes.getStyleColour()}" id="bkt_service_info_trainingselfenrol"><span
-      class="bkt_service_name bkt_service_name_${outcomes.getStyleColour()}">${outcomes.title}</span>
+  <div class="lbu_unified_bb_centralpanel" ${outcomes.toIdA("mainpanel")} style="background-color: ${outcomes.getStyleColour('bg',2)}">
+    <span class="lbu_unified_bb_centraltitle" style="color: ${outcomes.getStyleColour('fg',1)}">${outcomes.title}</span>
     <br/> <br/>
     
-    <form name="trainingselfenrol_request_form" action="view.jsp" method="POST">
-      <select name="trainingSession" id="trainingSession" size="1"
-              style="font-size: 16px; color: #666; border: medium #ee312a solid; margin-top: 3px;">
+    <form name="${id}requestform" action="javascript:void(0);">
+      <select ${outcomes.toIdA("trainingSession")} size="1"
+              style="font-size: 12px; color: #666; border: blue 1px solid; margin-top: 3px;">
         <c:choose>
           <c:when test="${outcomes.noCoursesFound()}">
-            <option value="none" disabled="disabled" selected="true">No Sessions Available</option>        
+            <option value="none" disabled="disabled" selected="">No Sessions Available</option>        
           </c:when>
           <c:otherwise>
-            <option value="none" disabled="disabled" selected="true">No Session Selected</option>
+            <option value="none" disabled="disabled" selected="">No Session Selected</option>
             <c:forEach begin="0" end="${outcomes.courseCount - 1}" var="n">
               <option value="${outcomes.getCourseID(n)}" ${outcomes.getCourseDisabledOption(n)}>${outcomes.getCourseTitle(n)}</option>
             </c:forEach>
@@ -125,12 +207,14 @@
       </select>
     </form>
       
-    <span class="bkt_action_button bkt_action_button_${outcomes.getStyleColour()}" 
-          id="trainingselfenrol_Action" 
-          onclick="trainingselfenrol_submitform()">${outcomes.buttonLabel}<i class="action_arrow_icon"></i></span>        
+    <span class="lbu_unified_bb_action_button"
+          style="background-color: ${outcomes.getStyleColour('bg',0)}; color: ${outcomes.getStyleColour('fg',0)}"
+          onclick="${id}submitform()">${outcomes.buttonLabel} <span class="lbu_unified_bb_action_button_arrow">›</span></span>
 
   </div>
 </div>
 
   </c:otherwise>
 </c:choose>
+  </body>
+</html>

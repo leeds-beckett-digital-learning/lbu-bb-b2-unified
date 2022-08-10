@@ -52,7 +52,7 @@ public class BaseOutcomes
   
   public BaseOutcomes()
   {
-    id = Long.toHexString( random.nextLong() );
+    id = "id" + Long.toHexString( random.nextLong() );
     try
     {
       bbcontext      = ContextManagerFactory.getInstance().getContext();
@@ -69,7 +69,6 @@ public class BaseOutcomes
         student = roleid.equals(  webappcore.configproperties.getStudentRoleId() );
         staff   = roleid.equals(  webappcore.configproperties.getStaffRoleId()   );
       }    
-      setStyleContent();    
     }
     catch ( Exception ex )
     {
@@ -79,30 +78,24 @@ public class BaseOutcomes
     }
   }
 
-  private void setStyleContent()
+  public String getStyleSheetHref()
   {
-    synchronized ( o )
-    {
-      if ( styletemplate == null )
-      {
-        try
-        {
-          webappcore.logger.debug( BaseOutcomes.class.getClassLoader().getResource( "/css/dynamic.css" ) );
-          styletemplate = new String( BaseOutcomes.class.getClassLoader().getResourceAsStream( "/css/dynamic.css" ).readAllBytes(), "UTF-8" );
-          webappcore.logger.debug( styletemplate );
-        }
-        catch ( Exception e )
-        {
-          webappcore.logger.error(  "Unable to load CSS.", e );
-          styletemplate = "/* error loading */";
-        }
-      }
-    }    
-  }  
-
+    return "'" + request.getServletContext().getContextPath() + "/style/unified.css'";
+  }
+  
   public String getId()
   {
     return id;
+  }
+  
+  public String toId( String name )
+  {
+    return id + name;
+  }
+  
+  public String toIdA( String name )
+  {
+    return "id=" + id + name;
   }
   
   public String getName()
@@ -175,44 +168,118 @@ public class BaseOutcomes
 
   public String getStyleColour()
   {
-    return "pink";
+    return "grey";
   }
   
-  public String getStyleContent()
+  static String[][][] colours    = 
   {
-    
-    synchronized( this )
     {
-      if ( stylecontent == null )
-      {
-        webappcore.logger.debug( "Selected variant = " + this.getStyleColour() );
-        String fcolor1 = "#ffffff";
-        String bcolor1 = "#000000";
-        String fcolor2 = "#000000";
-        String bcolor2 = "#ffffff";
-        String bcolor3 = "#777777";
-        if ( "pink".equals( this.getStyleColour() ) )
-        {
-          fcolor1 = "#ffffff";
-          bcolor1 = "#690039";
-          fcolor2 = "#690039";
-          bcolor2 = "#f9cbdf";
-          bcolor3 = "#e382b5";
-        }
+      { "grey" },
+      { "rgb(47, 50, 51)", "rgb(113, 115, 115)", "rgb(199, 196, 195)", "white" },
+      { "white", "rgb(47, 50, 51)", "black" },
+      { "rgb(47, 50, 51)", "rgb(113, 115, 115)" }
+    },
 
-        String s = styletemplate;
-        s = s.replace( "__id__",      getId() );
-        s = s.replace( "__bcolor1__", bcolor1 );
-        s = s.replace( "__fcolor1__", fcolor1 );
-        s = s.replace( "__bcolor2__", bcolor2 );
-        s = s.replace( "__fcolor2__", fcolor2 );
-        s = s.replace( "__bcolor3__", bcolor3 );
+    {
+      { "blue" },
+      { "rgb(0, 64, 91)", "rgb(0, 183, 232)", "rgb(199, 228, 244)", "white" },
+      { "white", "rgb(0, 64, 91)", "black" },
+      { "rgb(0, 64, 91)", "rgb(0, 183, 232)" }
+    },
 
-        stylecontent = s;
-        webappcore.logger.debug( stylecontent );
-      }
+    {
+      { "green" },
+      { "rgb(28, 68, 4)", "rgb(62, 181, 73)", "rgb(210, 232, 202)", "white" },
+      { "white", "rgb(28, 68, 4)", "black" },
+      { "rgb(28, 68, 4)", "rgb(62, 181, 73)" }
+    },
+
+    {
+      { "lime" },
+      { "rgb(28, 68, 4)", "rgb(141, 198, 63)", "rgb(230, 240, 203)", "white" },
+      { "white", "rgb(28, 68, 4)", "black" },
+      { "rgb(28, 68, 4)", "rgb(141, 198, 63)" }
+    },
+
+    {
+      { "orange" },
+      { "rgb(85, 37, 0)", "rgb(245, 130, 32)", "rgb(254, 226, 201)", "white" },
+      { "white", "rgb(85, 37, 0)", "black" },
+      { "rgb(85, 37, 0)", "rgb(245, 130, 32)" }
+    },
+
+    {
+      { "pink" },
+      { "rgb(105, 0, 57)", "rgb(227, 130, 181)", "rgb(249, 203, 223)", "white" },
+      { "white", "rgb(105, 0, 57)", "black" },
+      { "rgb(105, 0, 57)", "rgb(171, 74, 156)" }
+    },
+
+    {
+      { "purple" },
+      { "rgb(39, 7, 88)", "rgb(140, 118, 176)", "rgb(211, 191, 221)", "white" },
+      { "white", "rgb(39, 7, 88)", "black" },
+      { "rgb(39, 7, 88)", "rgb(171, 74, 156)" }
+    },
+
+    {
+      { "red" },
+      { "rgb(104, 0, 0)", "rgb(238, 49, 42)", "rgb(253, 215, 198)", "white" },
+      { "white", "rgb(104, 0, 0)", "black" },
+      { "rgb(104, 0, 0)", "rgb(238, 49, 42)" }
+    },
+
+    {
+      { "teal" },
+      { "rgb(0, 68, 65)", "rgb(24, 186, 171)", "rgb(176, 223, 219)", "white" },
+      { "white", "rgb(0, 68, 65)", "black" },
+      { "rgb(0, 68, 65)", "rgb(24, 186, 171)" }
+    },
+
+    {
+      { "turq" },
+      { "rgb(0, 69, 87)", "rgb(92, 199, 211)", "rgb(197, 233, 243)", "white" },
+      { "white", "rgb(0, 69, 87)", "black" },
+      { "rgb(0, 69, 87)", "rgb(92, 199, 211)" }
+    },
+
+    {
+      { "violet" },
+      { "rgb(89, 25, 78)", "rgb(171, 74, 156)", "rgb(218, 202, 227)", "white" },
+      { "white", "rgb(89, 25, 78)", "black" },
+      { "rgb(89, 25, 78)", "rgb(171, 74, 156)" }
+    },
+
+    {
+      { "yellow" },
+      { "rgb(71, 52, 0)", "rgb(228, 190, 20)", "rgb(255, 233, 194)", "white" },
+      { "white", "rgb(71, 52, 0)", "black" },
+      { "rgb(71, 52, 0)", "rgb(228, 190, 20)" }
     }
+  };
+        
+  public String getStyleColour( String type, int n )
+  {
+    int t;
+    if ( "bg".equals( type ) )
+      t=1;
+    else if ( "fg".equals( type ) )
+      t=2;
+    else if ( "bor".equals( type ) )
+      t=3;
+    else
+      return "#ffffff";
+     
+    for ( int set=0; set<colours.length; set++ )
+      if ( colours[set][0][0].equals( this.getStyleColour() ) )
+      {
+        if ( n<0 || n>= colours[set][t].length )
+          return colours[set][t][0];
+        return colours[set][t][n];
+      }
     
-    return stylecontent;
+    if ( n<0 || n>= colours[0][t].length )
+      return colours[0][t][0];
+    return colours[0][t][n];
   }  
 }

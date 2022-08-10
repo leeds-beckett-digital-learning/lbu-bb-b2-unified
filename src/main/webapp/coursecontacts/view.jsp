@@ -1,10 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <%@ taglib uri="/bbNG" prefix="bbNG" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:useBean id="outcomes" class="uk.ac.leedsbeckett.digles.b2unified.ContactsOutcomes" scope="request"/>
 
-
+<html>
+  <head>
+    <title>HTML Fragment for Insertion</title>
+    <!-- 
+    The 'module loading script' will shift the style element
+    into the containing div element for the module ('portal channel').
+    This is acceptable with HTML5 but the names of the classes mustn't
+    clash with class names from other modules in the same page.
+    -->
+    <style>${outcomes.getStyleContent()}"</style>
+  </head>
+  <body>
 <c:choose>
   <c:when test="${outcomes.hasFailed()}">
       <p>${outcomes.getErrorMessage()}</p>
@@ -61,3 +72,5 @@
    </div>
   </c:otherwise>
 </c:choose>
+  </body>
+</html>
