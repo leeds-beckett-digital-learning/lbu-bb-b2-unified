@@ -17,8 +17,15 @@ apply plugin: 'maven-publish'
 
 // define the version for the project when publishing to maven
 group "uk.ac.leedsbeckett"
-version "1.2.1"
+version "1.2.2"
 description = 'LBU-BB-B2-Unified'
+
+// Ensure compatible with Java 11 even if using newer compiler.
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(11))
+    }
+}
 
 repositories {
   jcenter()
@@ -60,7 +67,7 @@ dependencies {
           "net.sf.json-lib:json-lib:2.2.3:jdk15"
   
 
-  compileOnly( "log4j:log4j:1.2.17" )
+  implementation( "log4j:log4j:1.2.17" )
   compileOnly( "javax.servlet:javax.servlet-api:3.1.0" )
   compileOnly( "com.sun.jersey:jersey-server:1.19.4" )
   compileOnly( "com.sun.jersey:jersey-core:1.19.4" )

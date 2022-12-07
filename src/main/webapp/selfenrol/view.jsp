@@ -297,7 +297,7 @@
       
     <span class="lbu_unified_bb_action_button"
           style="background-color: ${outcomes.getStyleColour('bg',0)}; color: ${outcomes.getStyleColour('fg',0)}"
-          onclick="${id}submitform()">${outcomes.buttonLabel} <span class="lbu_unified_bb_action_button_arrow">›</span></span>
+          onclick="${id}submitform()">${outcomes.buttonLabel} <span class="lbu_unified_bb_action_button_arrow">&#x203a;</span></span>
   </div>
 </div>
 

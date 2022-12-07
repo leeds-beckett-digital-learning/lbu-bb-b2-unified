@@ -192,7 +192,7 @@
     
     <form name="${id}requestform" action="javascript:void(0);">
       <select ${outcomes.toIdA("trainingSession")} size="1"
-              style="font-size: 12px; color: #666; border: blue 1px solid; margin-top: 3px;">
+              style="font-size: 12px; color: #666; border: blue 1px solid; margin-top: 3px; width: 90%;">
         <c:choose>
           <c:when test="${outcomes.noCoursesFound()}">
             <option value="none" disabled="disabled" selected="">No Sessions Available</option>        
@@ -209,7 +209,7 @@
       
     <span class="lbu_unified_bb_action_button"
           style="background-color: ${outcomes.getStyleColour('bg',0)}; color: ${outcomes.getStyleColour('fg',0)}"
-          onclick="${id}submitform()">${outcomes.buttonLabel} <span class="lbu_unified_bb_action_button_arrow">›</span></span>
+          onclick="${id}submitform()">${outcomes.buttonLabel} <span class="lbu_unified_bb_action_button_arrow">&#x203a;</span></span>
 
   </div>
 </div>
