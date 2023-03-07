@@ -80,9 +80,9 @@ dependencies {
   
   // Dependencies are libraries needed to build, but should not be included in the B2 WAR.
   // You should NEVER include Learn JARs (other than webapis) in your B2.
-  compileOnly( "blackboard.platform:bb-platform:3900.13.0" ) { transitive = false }
-  compileOnly( "blackboard.platform:bb-cms-admin:3900.13.0" ) { transitive = false }
-  compileOnly( "blackboard.platform:bb-taglibs:3900.13.0" ) { transitive = false }
+  compileOnly( "blackboard.platform:bb-platform:3900.60.0" ) { transitive = false }
+  compileOnly( "blackboard.platform:bb-cms-admin:3900.60.0" ) { transitive = false }
+  compileOnly( "blackboard.platform:bb-taglibs:3900.60.0" ) { transitive = false }
 
   implementation 'org.apache.commons:commons-text:1.9'
   implementation 'uk.ac.leedsbeckett:bbb2utils:0.2.11'  
